@@ -1,5 +1,15 @@
-            - name: Node to GH
-  # You may pin to the exact commit or the version.
-  # uses: FdelMazo/node-to-gh-action@7e9fea02899d91fa04cac0c4b5ae7e6e27ef18ec
-  uses: FdelMazo/node-to-gh-action@v2
-          
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: cd node-js-server
+      - run: node server.js
+      - run: cd angular-12-client
+      - run: ng serve --port 8081
